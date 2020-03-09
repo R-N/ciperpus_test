@@ -1,6 +1,6 @@
 # ciperpus_test
 
-Fuzzy and csv test case testing with Selenium, unittest, and HttpTestRunner.
+Fuzzy and csv test case testing for web implemented in python 3 with Selenium, unittest, and HttpTestRunner.
 
 **Ciperpus Interface**
 
