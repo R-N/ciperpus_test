@@ -22,14 +22,15 @@ Tests are executed by ciperpus_test_runner. ciperpus_test_runner uses HtmlTestRu
 
 **Prerequisites**
 
-The required python packages is listed in requirements.txt. You can easily install it using pip with:
+*  [ciperpus](https://gitlab.com/psi-rabu-kel-3/ciperpus) running locally at http://localhost/ciperpus. During development of this, ciperpus was hosted using [xampp](https://www.apachefriends.org/index.html) running php 5.6.
+*  Selenium gecko driver in PATH environment. Official guide is [here](https://selenium-python.readthedocs.io/installation.html). Make sure to at least try the first example and have it working.
+*  Python >= 3.4 for unittest subtests
+*  Some python packages in rquirements.txt. They can by installed easily by running the following command in cmd.
 ```
 pip install requirements.txt
 ```
 
 Other requirements are:
-*  [ciperpus](https://gitlab.com/psi-rabu-kel-3/ciperpus) running locally at http://localhost/ciperpus. During development of this, ciperpus was hosted using [xampp](https://www.apachefriends.org/index.html) running php 5.6.
-*  Selenium gecko driver in PATH environment. Official guide is [here](https://selenium-python.readthedocs.io/installation.html). Make sure to at least try the first example and have it working.
 
 A little fix is needed for HttpTestRunner due to the random unicode characters generated through fuzzing. On result.py, at line 403 (by the time this is written), add encoding="utf-8" argument ([ref](https://github.com/oldani/HtmlTestRunner/issues/48)). So, from:
 
@@ -49,10 +50,10 @@ This is also a program, which can have bugs. This automated testing program shou
 **Todo**
 
 *  Implement more functionality in ciperpus_client and ciperpus_page
-*  Implement logical navigation for more realistic testing
-*  Cover more test cases
 *  Implement number and file fuzzing to support more test cases
+*  Cover more test cases
 *  Implement database interface, maybe, for real database checking for test case data validity
+*  Implement logical navigation for more realistic testing
 
 **Known Bugs**
 
