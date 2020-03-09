@@ -30,8 +30,6 @@ Tests are executed by ciperpus_test_runner. ciperpus_test_runner uses HtmlTestRu
 pip install requirements.txt
 ```
 
-Other requirements are:
-
 A little fix is needed for HttpTestRunner due to the random unicode characters generated through fuzzing. On result.py, at line 403 (by the time this is written), add encoding="utf-8" argument ([ref](https://github.com/oldani/HtmlTestRunner/issues/48)). So, from:
 
 ```
