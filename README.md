@@ -55,5 +55,5 @@ This is also a program, which can have bugs. This automated testing program shou
 
 **Known Bugs**
 
-*  Username validity check is inconsistent with the real environment due to MySQL unicode collation. At first, it may just seem simple upper/lower case program which can be fixed easily, but it actually involves characters like "Ã" considered as equal to "a".
+*  Username validity check is inconsistent with the real environment due to MySQL unicode collation. This leads to wrong test result expectation in ciperpus_test_logic, resulting in falsely failing tests. At first, it may just seem simple upper/lower case program which can be fixed easily, but it actually involves characters like "Ã" considered as equal to "a".
 *  You tell me.
