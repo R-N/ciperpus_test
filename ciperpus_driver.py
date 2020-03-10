@@ -3,73 +3,87 @@ from ciperpus_element import ciperpus_element
 from selenium.common.exceptions import NoSuchElementException
 
 class ciperpus_driver:
-    def __init__(self, client, headless=False):
-        self.client = client
-        options = webdriver.firefox.options.Options()
-        options.set_capability("headless", headless)
-        self.driver = webdriver.Firefox(options=options)
-        self.open()
+	def __init__(self, client, headless=False):
+		self.client = client
+		options = webdriver.firefox.options.Options()
+		options.set_capability("headless", headless)
+		self.driver = webdriver.Firefox(options=options)
+		self.open()
 
-    @property
-    def base_url(self):
-        return self.client.base_url
+	@property
+	def base_url(self):
+		return self.client.base_url
 
-    def open(self, endpoint=""):
-        self.driver.get(self.client.to_url(endpoint))
+	def open(self, endpoint=""):
+		self.driver.get(self.client.to_url(endpoint))
 
-    def find_element(self, selector):
-        try:
-            return ciperpus_element(self.driver.find_element_by_css_selector(selector), self)
-        except NoSuchElementException as ex:
-            return None
+	def find_element(self, selector):
+		try:
+			return ciperpus_element(self.driver.find_element_by_css_selector(selector), self)
+		except NoSuchElementException as ex:
+			return None
 
-    def find(self, selector):
-        return self.find_element(selector)
+	def find(self, selector):
+		return self.find_element(selector)
 
-    def find_elements(self, selector):
-        try:
-            return [ciperpus_element(el, self) for el in self.driver.find_elements_by_css_selector(selector)]
-        except NoSuchElementException as ex:
-            return []
+	def find_elements(self, selector):
+		try:
+			return [ciperpus_element(el, self) for el in self.driver.find_elements_by_css_selector(selector)]
+		except NoSuchElementException as ex:
+			return []
 
-    @property
-    def url(self):
-        return self.driver.current_url
+	@property
+	def url(self):
+		return self.driver.current_url
 
-    def close(self):
-        return self.driver.close()
+	def close(self):
+		return self.driver.close()
 
-    def quit(self):
-        return self.driver.quit()
+	def quit(self):
+		return self.driver.quit()
 
-    def back(self):
-        return self.driver.back()
+	def back(self):
+		return self.driver.back()
 
-    def forward(self):
-        return self.driver.forward()
+	def forward(self):
+		return self.driver.forward()
 
-    def delete_all_cookies(self):
-        return self.driver.delete_all_cookies()
+	def delete_all_cookies(self):
+		return self.driver.delete_all_cookies()
 
-    def get_log(self, log_type):
-        return self.driver.get_log(log_type)
+	def get_log(self, log_type):
+		return self.driver.get_log(log_type)
 
-    def screenshot(self, filename):
-        #return self.driver.get_screenshot_as_file(filename)
-        return self.driver.save_screenshot(filename)
+	def screenshot(self, filename):
+		#return self.driver.get_screenshot_as_file(filename)
+		return self.driver.save_screenshot(filename)
 
-    @property
-    def switch_to(self):
-        return self.switch_to
+	@property
+	def switch_to(self):
+		return self.switch_to
 
-    @property
-    def title(self):
-        return self.driver.title
+	@property
+	def title(self):
+		return self.driver.title
 
-    @property
-    def page_source(self):
-        return self.driver.page_source
+	@property
+	def page_source(self):
+		return self.driver.page_source
 
-    def wait(self, seconds):
-        return self.driver.implicitly_wait(seconds)
+	def wait(self, seconds):
+		return self.driver.implicitly_wait(seconds)
 
+driver_instance = None
+
+def create_driver(client, headless=False):
+	global driver_instance
+	if client is None:
+		raise ValueError("Client can't be None")
+	driver_instance = ciperpus_driver(client, headless)
+	return driver_instance
+	
+		
+def get_driver(client=None, headless=False):
+	global driver_instance
+	driver_instance = driver_instance or create_driver(client, headless)
+	return driver_instance

@@ -1,10 +1,8 @@
 import unittest
 from ciperpus_test_logic import *
 from ciperpus_util import *
-import fuzzing
-import ciperpus_generation_fuzzer
 
-class ciperpus_test_case_fuzzy(unittest.TestCase):
+class ciperpus_test_case_payload(unittest.TestCase):
 
 	def setUp(self):
 		self.logic =  get_logic()
@@ -14,8 +12,8 @@ class ciperpus_test_case_fuzzy(unittest.TestCase):
 			"admin": "admin"
 		}
 		cases = zip_lists((
-			ciperpus_generation_fuzzer.fuzz_string(100, 100), 
-			ciperpus_generation_fuzzer.fuzz_string(100, 100)
+			read_payload("payloads/username.txt"), 
+			read_payload("payloads/password.txt")
 		))
 		for case in cases:
 			username, password = case
