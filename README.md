@@ -14,7 +14,7 @@ ciperpus_db_client acts as abstraction of and interface for ciperpus' database. 
 
 Testing can be done directly using ciperpus_client, with help of ciperpus_test_context or ciperpus_test_client, or automated with ciperpus_test_logic.  ciperpus_test_context handles your expected exception (or no exception) by ciperpus_error_code and throws ciperpus_test_exception if it's not as expected. ciperpus_test_exception will contain ciperpus_test_error_code (unexpected, expected, or wrong exception) and the expected and/or actual ciperpus_error_code. ciperpus_test_client simply wraps ciperpus_client functions with ciperpus_test_context. ciperpus_test_logic takes a test case and data to be executed. ciperpus_test_logic examines the data given, determines the expected output then proceeds to test. ciperpus_test_logic uses ciperpus_test_context_case which is just a derivation of ciperpus_test_context that can handle the result into test case, failing it if it should fail.
 
-Curently, there are two types of test cases, both using unittest. ciperpus_test_case loads tests from a csv located in a folder named "cases" and executes every test cases there. The tests are done as subtests. ciperpus_test_classes can use any testing methods mentioned in the previous paragraph. ciperpus_test_case_fuzzy also runs tests, but the tests are obtained through fuzzing. For now, only string fuzzing is supported using fuzzing library. Number and file fuzzing will be implemented in the future. ciperpus_test_case_fuzzy can only use ciperpus_test_logic for the obvious reason that you can't provide expected result for random inputs.
+Curently, there are three types of test cases, both using unittest. ciperpus_test_case loads tests from a csv located in a folder named "cases" and executes every test cases there. The tests are done as subtests. ciperpus_test_classes can use any testing methods mentioned in the previous paragraph. ciperpus_test_case_fuzzy also runs tests, but the tests are obtained through fuzzing. For now, only string fuzzing is supported using fuzzing library. Number and file fuzzing will be implemented in the future. ciperpus_test_case_fuzzy can only use ciperpus_test_logic for the obvious reason that you can't provide expected result for random inputs. ciperpus_test_case_payload uses payload from text files to fill fields. Such payload can be obtained from, for example, [SecLists](https://github.com/danielmiessler/SecLists) and [fuzzdb](https://github.com/fuzzdb-project/fuzzdb).
 
 **Reporting**
 
@@ -50,8 +50,9 @@ This is also a program, which can have bugs. This automated testing program shou
 *  Implement more functionality in ciperpus_client and ciperpus_page
 *  Implement number and file fuzzing to support more test cases
 *  Cover more test cases
-*  Implement database interface, maybe, for real database checking for test case data validity
 *  Implement logical navigation for more realistic testing
+*  Implement reducers to provide better results
+*  Implement database interface, maybe, for real database checking for test case data validity
 
 **Known Bugs**
 
