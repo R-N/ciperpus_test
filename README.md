@@ -1,6 +1,6 @@
 # ciperpus_test
 
-Fuzzy and csv test case testing for CodeIgniter 3 implemented in python 3 with Selenium, unittest, and html-testRunner.
+Fuzzy and csv test case test automation for CodeIgniter 3 implemented in python 3 with Selenium, unittest, and html-testRunner.
 
 **Ciperpus Interface**
 
